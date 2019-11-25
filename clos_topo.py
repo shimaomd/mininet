@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import networkx as nx
 from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.cli import CLI
@@ -29,7 +29,6 @@ class ClosTopo(Topo):
             s += 1
             core_switches[x] = self.addSwitch('s%i' % s)
         print("Core switches")
-        pp(core_switches)
 
         agg_switches = {}
         total_agg_switches = total_core_switches * fanout
@@ -37,7 +36,6 @@ class ClosTopo(Topo):
             s += 1
             agg_switches[x] = self.addSwitch('s%i' % s)
         print("Aggregate switches:")
-        pp(agg_switches)
 
         for x in core_switches:
             for y in agg_switches:
@@ -53,7 +51,6 @@ class ClosTopo(Topo):
             s += 1
             edge_switches[x] = self.addSwitch('s%i' %s)
         print("Edge switches:")
-        pp(edge_switches)
 
         for x in agg_switches:
             for y in edge_switches:
